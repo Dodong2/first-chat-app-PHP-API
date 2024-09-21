@@ -16,7 +16,7 @@ class ChatController {
         }
 
         // Insert data into the database
-        $stmt = $conn->prepare('INSERT INTO todos (name, message) VALUES (?, ?)');
+        $stmt = $conn->prepare('INSERT INTO messages (name, message) VALUES (?, ?)');
 
             // Check if preparation was successful
             if ($stmt === false) {
@@ -25,7 +25,7 @@ class ChatController {
                 return;
             }
 
-            $stmt->bind_param('sss', $name, $message);
+            $stmt->bind_param('ss', $name, $message);
 
             if($stmt->execute()) {
                 $response = ['success' => true, 'message' => 'message created successfully'];
@@ -51,10 +51,6 @@ class ChatController {
         echo json_encode($response);
        }
 
-
-
 }
-
-
 
 ?>
